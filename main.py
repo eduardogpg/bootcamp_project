@@ -1,31 +1,24 @@
 import toga
 
-def button_handler(widget):
-    print("hello")
+class DocumentApp(toga.App):
+    
+    def __init__(self, title, id):
+        toga.App.__init__(self, title, id)
+        
+        self.title = title
+        self.size = ((400, 500))
+
+    def startup(self):
+        self.main_window = toga.MainWindow('main', title=self.title, size=self.size)
+        
+        self.main_window.content = toga.Box()
+        self.main_window.show()
 
 
-def build(app):
-    box = toga.Box()
-
-    button = toga.Button('Hello world', on_press=button_handler)
-    button.style.padding = 50
-    button.style.flex = 1
-    box.add(button)
-
-    return box
-
-
-def main():
-    return toga.App(
-        'First App',
-        'org.beeware.helloworld',
-        author='Tiberius Yak',
-        description="A testing app",
-        version=1,
-        home_page="https://beeware.org",
-        startup=build
-    )
-
+    def create_elements(self):
+        pass
+    
 
 if __name__ == '__main__':
-    main().main_loop()
+    document = DocumentApp('CódigoFacilito', 'com.codigofacilito')
+    document.main_loop()
